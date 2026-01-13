@@ -1,0 +1,65 @@
+# Example docker-compose overrides for local development
+#
+# Usage:
+#   1. Copy this file to docker-compose.local.yml:
+#      cp docker-compose.example.yml docker-compose.local.yml
+#
+#   2. Edit docker-compose.local.yml to set your local values
+#
+#   3. Start services with both files:
+#      docker-compose -f docker-compose.yml -f docker-compose.local.yml up
+#
+# The docker-compose.local.yml file is gitignored and won't be committed.
+# Use it to override environment variables and volumes for local development.
+
+version: '3.8'
+
+services:
+  database:
+    environment:
+      # Set your local database password
+      MYSQL_ROOT_PASSWORD: localpass123
+      MYSQL_PASSWORD: localpass123
+
+  backend:
+    environment:
+      # Set your local database password (must match above)
+      ConnectionStrings__DefaultConnection: Server=database;Database=OsintFramework;User=osintuser;Password=localpass123;
+      # Set your local Ollama URL
+      Ollama__BaseUrl: http://ollama:11434
+      Ollama__ServiceType: local
+      # Set your local SpiderFoot URL
+      # Tools__SpiderFoot__Url: http://spiderfoot:5001
+      # Or use remote Ollama with retries
+      # Ollama__ServiceType: remote
+    # Uncomment to use local file system instead of container code
+    # volumes:
+    #   - ./backend/OsintBackend:/app/OsintBackend
+
+  frontend:
+    environment:
+      # Set your local API URL
+      REACT_APP_API_URL: http://localhost:5000/graphql
+      VITE_REACT_APP_API_URL: http://localhost:5000/graphql
+
+  spiderfoot:
+    # Customize SpiderFoot if needed
+    ports:
+      - "5001:5001"
+
+  # Optionally add an Ollama service locally if you have it installed
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: osint-ollama
+  #   restart: unless-stopped
+  #   ports:
+  #     - "11434:11434"
+  #   environment:
+  #     - OLLAMA_HOST=0.0.0.0:11434
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   networks:
+  #     - osint-network
+  #
+  # volumes:
+  #   ollama_data:

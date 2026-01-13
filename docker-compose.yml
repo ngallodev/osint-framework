@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  database:
+    image: mariadb:10.11
+    container_name: osint-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-CHANGE_ME}
+      MYSQL_DATABASE: OsintFramework
+      MYSQL_USER: ${DB_USER:-osintuser}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-CHANGE_ME}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - osint-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: osint-api
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:5001;http://+:5000
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${DEV_CERT_PASSWORD:-localdevpass}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/dev-ip.pfx
+      - ConnectionStrings__DefaultConnection=Server=database;Database=OsintFramework;User=osintuser;Password=${DB_PASSWORD:-CHANGE_ME}
+      - Ollama__BaseUrl=${OLLAMA_BASE_URL:-http://10.0.0.22:11434}
+      - Ollama__ServiceType=${OLLAMA_SERVICE_TYPE:-remote}
+      - Ollama__DefaultModel=${OLLAMA_DEFAULT_MODEL:-hf.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF:Q4_K_M}
+      - Ollama__TimeoutSeconds=300
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ./certificates:/https:ro
+    depends_on:
+      - database
+      # - spiderfoot
+    networks:
+      - osint-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: osint-frontend
+    restart: unless-stopped
+    environment:
+      - VITE_REACT_APP_API_URL=/graphql
+      - CHOKIDAR_USEPOLLING=true
+      - DEV_CERT_PASSWORD=${DEV_CERT_PASSWORD:-localdevpass}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./certificates:/https:ro
+    depends_on:
+      - backend
+    networks:
+      - osint-network
+
+  # spiderfoot:
+  #   image: ctdc/spiderfoot:latest
+  #   container_name: osint-spiderfoot
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5001:5001"
+  #   volumes:
+  #     - spiderfoot_data:/home/spiderfoot/.spiderfoot
+  #   networks:
+  #     - osint-network
+
+  # tooling:
+  #   build:
+  #     context: ./tooling
+  #     dockerfile: Dockerfile
+  #   container_name: osint-tooling
+  #   tty: true
+  #   stdin_open: true
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./tooling:/workspace
+  #   networks:
+  #     - osint-network
+
+volumes:
+  mariadb_data:
+  # spiderfoot_data:
+
+networks:
+  osint-network:
+    driver: bridge

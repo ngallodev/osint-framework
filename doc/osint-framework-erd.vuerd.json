@@ -1,0 +1,1619 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -924.6668,
+    "scrollLeft": 0,
+    "zoomLevel": 1,
+    "show": 431,
+    "database": 1,
+    "databaseName": "OsintFramework",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "table_investigation",
+      "table_result",
+      "table_execution",
+      "table_finding",
+      "table_aijob"
+    ],
+    "relationshipIds": [
+      "rel_inv_result",
+      "rel_inv_exec",
+      "rel_exec_finding",
+      "rel_inv_ai"
+    ],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "table_investigation": {
+        "id": "table_investigation",
+        "name": "OsintInvestigation",
+        "comment": "Central investigation entity",
+        "columnIds": [
+          "inv_id",
+          "inv_target",
+          "inv_type",
+          "inv_requested_at",
+          "inv_requested_by",
+          "inv_status"
+        ],
+        "seqColumnIds": [
+          "inv_id",
+          "inv_target",
+          "inv_type",
+          "inv_requested_at",
+          "inv_requested_by",
+          "inv_status"
+        ],
+        "ui": {
+          "x": 100,
+          "y": 100,
+          "zIndex": 1,
+          "widthName": 98,
+          "widthComment": 144,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "table_result": {
+        "id": "table_result",
+        "name": "OsintResult",
+        "comment": "Results collected from tools",
+        "columnIds": [
+          "result_id",
+          "result_inv_id",
+          "result_tool_name",
+          "result_data_type",
+          "result_raw_data",
+          "result_summary",
+          "result_collected_at",
+          "result_confidence"
+        ],
+        "seqColumnIds": [
+          "result_id",
+          "result_inv_id",
+          "result_tool_name",
+          "result_data_type",
+          "result_raw_data",
+          "result_summary",
+          "result_collected_at",
+          "result_confidence"
+        ],
+        "ui": {
+          "x": 882,
+          "y": 185,
+          "zIndex": 2,
+          "widthName": 62,
+          "widthComment": 148,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1762637018520,
+          "createAt": 1762637002839
+        }
+      },
+      "table_execution": {
+        "id": "table_execution",
+        "name": "ToolExecution",
+        "comment": "Track execution of external OSINT tools",
+        "columnIds": [
+          "exec_id",
+          "exec_inv_id",
+          "exec_tool_name",
+          "exec_status",
+          "exec_config",
+          "exec_started_at",
+          "exec_completed_at",
+          "exec_error",
+          "exec_finding_count",
+          "exec_metadata",
+          "exec_created_at"
+        ],
+        "seqColumnIds": [
+          "exec_id",
+          "exec_inv_id",
+          "exec_tool_name",
+          "exec_status",
+          "exec_config",
+          "exec_started_at",
+          "exec_completed_at",
+          "exec_error",
+          "exec_finding_count",
+          "exec_metadata",
+          "exec_created_at"
+        ],
+        "ui": {
+          "x": -4,
+          "y": 560,
+          "zIndex": 3,
+          "widthName": 75,
+          "widthComment": 210,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1762637040820,
+          "createAt": 1762637002839
+        }
+      },
+      "table_finding": {
+        "id": "table_finding",
+        "name": "ToolFinding",
+        "comment": "Individual findings from tool executions",
+        "columnIds": [
+          "finding_id",
+          "finding_exec_id",
+          "finding_type",
+          "finding_value",
+          "finding_desc",
+          "finding_severity",
+          "finding_confidence",
+          "finding_source",
+          "finding_related",
+          "finding_raw_data",
+          "finding_ref_url",
+          "finding_discovered_at",
+          "finding_verified",
+          "finding_notes"
+        ],
+        "seqColumnIds": [
+          "finding_id",
+          "finding_exec_id",
+          "finding_type",
+          "finding_value",
+          "finding_desc",
+          "finding_severity",
+          "finding_confidence",
+          "finding_source",
+          "finding_related",
+          "finding_raw_data",
+          "finding_ref_url",
+          "finding_discovered_at",
+          "finding_verified",
+          "finding_notes"
+        ],
+        "ui": {
+          "x": 847,
+          "y": 653,
+          "zIndex": 4,
+          "widthName": 63,
+          "widthComment": 212,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1762637045666,
+          "createAt": 1762637002839
+        }
+      },
+      "table_aijob": {
+        "id": "table_aijob",
+        "name": "AiJob",
+        "comment": "AI-powered analysis jobs using Ollama",
+        "columnIds": [
+          "ai_id",
+          "ai_inv_id",
+          "ai_job_type",
+          "ai_status",
+          "ai_model",
+          "ai_prompt",
+          "ai_result",
+          "ai_result_format",
+          "ai_struct_result",
+          "ai_error",
+          "ai_error_info",
+          "ai_created_at",
+          "ai_started_at",
+          "ai_completed_at",
+          "ai_attempt_count",
+          "ai_worker_host",
+          "ai_last_attempt_started",
+          "ai_last_attempt_completed",
+          "ai_last_duration",
+          "ai_last_error",
+          "ai_debug",
+          "ai_debug_info"
+        ],
+        "seqColumnIds": [
+          "ai_id",
+          "ai_inv_id",
+          "ai_job_type",
+          "ai_status",
+          "ai_model",
+          "ai_prompt",
+          "ai_result",
+          "ai_result_format",
+          "ai_struct_result",
+          "ai_error",
+          "ai_error_info",
+          "ai_created_at",
+          "ai_started_at",
+          "ai_completed_at",
+          "ai_attempt_count",
+          "ai_worker_host",
+          "ai_last_attempt_started",
+          "ai_last_attempt_completed",
+          "ai_last_duration",
+          "ai_last_error",
+          "ai_debug",
+          "ai_debug_info"
+        ],
+        "ui": {
+          "x": 100,
+          "y": 1200,
+          "zIndex": 5,
+          "widthName": 60,
+          "widthComment": 206,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "inv_id": {
+        "id": "inv_id",
+        "tableId": "table_investigation",
+        "name": "Id",
+        "comment": "Primary Key",
+        "dataType": "INT",
+        "default": "",
+        "options": 11,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 64,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "inv_target": {
+        "id": "inv_target",
+        "tableId": "table_investigation",
+        "name": "Target",
+        "comment": "Investigation target (person, domain, etc.)",
+        "dataType": "VARCHAR(500)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 223,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "inv_type": {
+        "id": "inv_type",
+        "tableId": "table_investigation",
+        "name": "InvestigationType",
+        "comment": "Type of investigation",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 95,
+          "widthComment": 112,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "inv_requested_at": {
+        "id": "inv_requested_at",
+        "tableId": "table_investigation",
+        "name": "RequestedAt",
+        "comment": "When investigation was requested",
+        "dataType": "DATETIME",
+        "default": "CURRENT_TIMESTAMP",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 70,
+          "widthComment": 184,
+          "widthDataType": 60,
+          "widthDefault": 122
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "inv_requested_by": {
+        "id": "inv_requested_by",
+        "tableId": "table_investigation",
+        "name": "RequestedBy",
+        "comment": "User who requested the investigation",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 70,
+          "widthComment": 199,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "inv_status": {
+        "id": "inv_status",
+        "tableId": "table_investigation",
+        "name": "Status",
+        "comment": "Pending|Running|Completed|Failed",
+        "dataType": "VARCHAR(20)",
+        "default": "'Pending'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 187,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_id": {
+        "id": "result_id",
+        "tableId": "table_result",
+        "name": "Id",
+        "comment": "Primary Key",
+        "dataType": "INT",
+        "default": "",
+        "options": 11,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 64,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_inv_id": {
+        "id": "result_inv_id",
+        "tableId": "table_result",
+        "name": "OsintInvestigationId",
+        "comment": "Foreign Key to Investigation",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 108,
+          "widthComment": 150,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_tool_name": {
+        "id": "result_tool_name",
+        "tableId": "table_result",
+        "name": "ToolName",
+        "comment": "Name of the tool that generated this result",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 229,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_data_type": {
+        "id": "result_data_type",
+        "tableId": "table_result",
+        "name": "DataType",
+        "comment": "Type of data collected",
+        "dataType": "VARCHAR(50)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 118,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_raw_data": {
+        "id": "result_raw_data",
+        "tableId": "table_result",
+        "name": "RawData",
+        "comment": "JSON data from the tool",
+        "dataType": "JSON",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 131,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_summary": {
+        "id": "result_summary",
+        "tableId": "table_result",
+        "name": "Summary",
+        "comment": "Human-readable summary",
+        "dataType": "VARCHAR(1000)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 143,
+          "widthDataType": 87,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_collected_at": {
+        "id": "result_collected_at",
+        "tableId": "table_result",
+        "name": "CollectedAt",
+        "comment": "When the data was collected",
+        "dataType": "DATETIME",
+        "default": "CURRENT_TIMESTAMP",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 63,
+          "widthComment": 154,
+          "widthDataType": 60,
+          "widthDefault": 122
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "result_confidence": {
+        "id": "result_confidence",
+        "tableId": "table_result",
+        "name": "ConfidenceScore",
+        "comment": "Confidence in the result",
+        "dataType": "VARCHAR(10)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 91,
+          "widthComment": 128,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_id": {
+        "id": "exec_id",
+        "tableId": "table_execution",
+        "name": "Id",
+        "comment": "Primary Key",
+        "dataType": "INT",
+        "default": "",
+        "options": 11,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 64,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_inv_id": {
+        "id": "exec_inv_id",
+        "tableId": "table_execution",
+        "name": "OsintInvestigationId",
+        "comment": "Foreign Key to Investigation",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 108,
+          "widthComment": 150,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_tool_name": {
+        "id": "exec_tool_name",
+        "tableId": "table_execution",
+        "name": "ToolName",
+        "comment": "Name of the tool being executed",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 177,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_status": {
+        "id": "exec_status",
+        "tableId": "table_execution",
+        "name": "Status",
+        "comment": "Queued|Running|Completed|Failed|Cancelled",
+        "dataType": "VARCHAR(20)",
+        "default": "'Queued'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 240,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_config": {
+        "id": "exec_config",
+        "tableId": "table_execution",
+        "name": "Configuration",
+        "comment": "Tool-specific configuration (JSON)",
+        "dataType": "JSON",
+        "default": "'{}'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 75,
+          "widthComment": 181,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_started_at": {
+        "id": "exec_started_at",
+        "tableId": "table_execution",
+        "name": "StartedAt",
+        "comment": "When execution started",
+        "dataType": "DATETIME",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 128,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_completed_at": {
+        "id": "exec_completed_at",
+        "tableId": "table_execution",
+        "name": "CompletedAt",
+        "comment": "When execution completed",
+        "dataType": "DATETIME",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 72,
+          "widthComment": 147,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_error": {
+        "id": "exec_error",
+        "tableId": "table_execution",
+        "name": "ErrorMessage",
+        "comment": "Error message if failed",
+        "dataType": "VARCHAR(1000)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 74,
+          "widthComment": 119,
+          "widthDataType": 87,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_finding_count": {
+        "id": "exec_finding_count",
+        "tableId": "table_execution",
+        "name": "FindingCount",
+        "comment": "Number of findings discovered",
+        "dataType": "INT",
+        "default": "0",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 73,
+          "widthComment": 166,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_metadata": {
+        "id": "exec_metadata",
+        "tableId": "table_execution",
+        "name": "ExecutionMetadata",
+        "comment": "Execution metadata and logs (JSON)",
+        "dataType": "JSON",
+        "default": "'{}'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 104,
+          "widthComment": 194,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "exec_created_at": {
+        "id": "exec_created_at",
+        "tableId": "table_execution",
+        "name": "CreatedAt",
+        "comment": "When record was created",
+        "dataType": "DATETIME",
+        "default": "CURRENT_TIMESTAMP",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 137,
+          "widthDataType": 60,
+          "widthDefault": 122
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_id": {
+        "id": "finding_id",
+        "tableId": "table_finding",
+        "name": "Id",
+        "comment": "Primary Key",
+        "dataType": "INT",
+        "default": "",
+        "options": 11,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 64,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_exec_id": {
+        "id": "finding_exec_id",
+        "tableId": "table_finding",
+        "name": "ToolExecutionId",
+        "comment": "Foreign Key to ToolExecution",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 85,
+          "widthComment": 155,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_type": {
+        "id": "finding_type",
+        "tableId": "table_finding",
+        "name": "FindingType",
+        "comment": "Type (domain, email, username, ip, etc.)",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 66,
+          "widthComment": 210,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_value": {
+        "id": "finding_value",
+        "tableId": "table_finding",
+        "name": "Value",
+        "comment": "Primary value/data point",
+        "dataType": "VARCHAR(500)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 132,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_desc": {
+        "id": "finding_desc",
+        "tableId": "table_finding",
+        "name": "Description",
+        "comment": "Additional details",
+        "dataType": "VARCHAR(2000)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 62,
+          "widthComment": 94,
+          "widthDataType": 87,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_severity": {
+        "id": "finding_severity",
+        "tableId": "table_finding",
+        "name": "Severity",
+        "comment": "Info|Low|Medium|High|Critical",
+        "dataType": "VARCHAR(50)",
+        "default": "'Info'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 161,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_confidence": {
+        "id": "finding_confidence",
+        "tableId": "table_finding",
+        "name": "ConfidenceScore",
+        "comment": "Confidence score (0-100)",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 91,
+          "widthComment": 134,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_source": {
+        "id": "finding_source",
+        "tableId": "table_finding",
+        "name": "Source",
+        "comment": "Source within the tool",
+        "dataType": "VARCHAR(200)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 118,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_related": {
+        "id": "finding_related",
+        "tableId": "table_finding",
+        "name": "RelatedEntities",
+        "comment": "Related entities (JSON array)",
+        "dataType": "JSON",
+        "default": "'[]'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 80,
+          "widthComment": 152,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_raw_data": {
+        "id": "finding_raw_data",
+        "tableId": "table_finding",
+        "name": "RawData",
+        "comment": "Raw finding data (JSON)",
+        "dataType": "JSON",
+        "default": "'{}'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 130,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_ref_url": {
+        "id": "finding_ref_url",
+        "tableId": "table_finding",
+        "name": "ReferenceUrl",
+        "comment": "External reference/URL",
+        "dataType": "VARCHAR(500)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 70,
+          "widthComment": 122,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_discovered_at": {
+        "id": "finding_discovered_at",
+        "tableId": "table_finding",
+        "name": "DiscoveredAt",
+        "comment": "When finding was discovered",
+        "dataType": "DATETIME",
+        "default": "CURRENT_TIMESTAMP",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 72,
+          "widthComment": 157,
+          "widthDataType": 60,
+          "widthDefault": 122
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_verified": {
+        "id": "finding_verified",
+        "tableId": "table_finding",
+        "name": "IsVerified",
+        "comment": "Whether finding has been verified",
+        "dataType": "BOOLEAN",
+        "default": "false",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 182,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "finding_notes": {
+        "id": "finding_notes",
+        "tableId": "table_finding",
+        "name": "AnalystNotes",
+        "comment": "Notes from analyst review",
+        "dataType": "VARCHAR(1000)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 72,
+          "widthComment": 140,
+          "widthDataType": 87,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_id": {
+        "id": "ai_id",
+        "tableId": "table_aijob",
+        "name": "Id",
+        "comment": "Primary Key",
+        "dataType": "INT",
+        "default": "",
+        "options": 11,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 64,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_inv_id": {
+        "id": "ai_inv_id",
+        "tableId": "table_aijob",
+        "name": "OsintInvestigationId",
+        "comment": "Foreign Key to Investigation",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 108,
+          "widthComment": 150,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_job_type": {
+        "id": "ai_job_type",
+        "tableId": "table_aijob",
+        "name": "JobType",
+        "comment": "analysis|inference",
+        "dataType": "VARCHAR(32)",
+        "default": "'analysis'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 94,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_status": {
+        "id": "ai_status",
+        "tableId": "table_aijob",
+        "name": "Status",
+        "comment": "Queued|Running|Succeeded|Failed|Cancelled",
+        "dataType": "INT",
+        "default": "0",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 239,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_model": {
+        "id": "ai_model",
+        "tableId": "table_aijob",
+        "name": "Model",
+        "comment": "AI model name",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 83,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_prompt": {
+        "id": "ai_prompt",
+        "tableId": "table_aijob",
+        "name": "Prompt",
+        "comment": "Prompt sent to AI",
+        "dataType": "LONGTEXT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 95,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_result": {
+        "id": "ai_result",
+        "tableId": "table_aijob",
+        "name": "Result",
+        "comment": "AI response/result",
+        "dataType": "LONGTEXT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 98,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_result_format": {
+        "id": "ai_result_format",
+        "tableId": "table_aijob",
+        "name": "ResultFormat",
+        "comment": "Format of the result",
+        "dataType": "VARCHAR(64)",
+        "default": "'MarkdownSectionsV1'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 72,
+          "widthComment": 107,
+          "widthDataType": 75,
+          "widthDefault": 122
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_struct_result": {
+        "id": "ai_struct_result",
+        "tableId": "table_aijob",
+        "name": "StructuredResult",
+        "comment": "Structured result data (JSON)",
+        "dataType": "JSON",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 89,
+          "widthComment": 155,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_error": {
+        "id": "ai_error",
+        "tableId": "table_aijob",
+        "name": "Error",
+        "comment": "Error message if failed",
+        "dataType": "LONGTEXT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 119,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_error_info": {
+        "id": "ai_error_info",
+        "tableId": "table_aijob",
+        "name": "ErrorInfo",
+        "comment": "Detailed error information (JSON)",
+        "dataType": "JSON",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 180,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_created_at": {
+        "id": "ai_created_at",
+        "tableId": "table_aijob",
+        "name": "CreatedAt",
+        "comment": "When job was created",
+        "dataType": "DATETIME",
+        "default": "CURRENT_TIMESTAMP",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 119,
+          "widthDataType": 60,
+          "widthDefault": 122
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_started_at": {
+        "id": "ai_started_at",
+        "tableId": "table_aijob",
+        "name": "StartedAt",
+        "comment": "When job started",
+        "dataType": "DATETIME",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 93,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_completed_at": {
+        "id": "ai_completed_at",
+        "tableId": "table_aijob",
+        "name": "CompletedAt",
+        "comment": "When job completed",
+        "dataType": "DATETIME",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 72,
+          "widthComment": 113,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_attempt_count": {
+        "id": "ai_attempt_count",
+        "tableId": "table_aijob",
+        "name": "AttemptCount",
+        "comment": "Number of retry attempts",
+        "dataType": "INT",
+        "default": "0",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 78,
+          "widthComment": 138,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_worker_host": {
+        "id": "ai_worker_host",
+        "tableId": "table_aijob",
+        "name": "WorkerHost",
+        "comment": "Host that processed this job",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 65,
+          "widthComment": 150,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_last_attempt_started": {
+        "id": "ai_last_attempt_started",
+        "tableId": "table_aijob",
+        "name": "LastAttemptStartedAt",
+        "comment": "When last attempt started",
+        "dataType": "DATETIME",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 116,
+          "widthComment": 140,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_last_attempt_completed": {
+        "id": "ai_last_attempt_completed",
+        "tableId": "table_aijob",
+        "name": "LastAttemptCompletedAt",
+        "comment": "When last attempt completed",
+        "dataType": "DATETIME",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 137,
+          "widthComment": 160,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_last_duration": {
+        "id": "ai_last_duration",
+        "tableId": "table_aijob",
+        "name": "LastDurationMilliseconds",
+        "comment": "Duration of last attempt in ms",
+        "dataType": "DOUBLE",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 134,
+          "widthComment": 161,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_last_error": {
+        "id": "ai_last_error",
+        "tableId": "table_aijob",
+        "name": "LastError",
+        "comment": "Error from last attempt",
+        "dataType": "LONGTEXT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 123,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_debug": {
+        "id": "ai_debug",
+        "tableId": "table_aijob",
+        "name": "Debug",
+        "comment": "Enable debug mode",
+        "dataType": "BOOLEAN",
+        "default": "false",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 109,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "ai_debug_info": {
+        "id": "ai_debug_info",
+        "tableId": "table_aijob",
+        "name": "DebugInfo",
+        "comment": "Debug metadata (JSON)",
+        "dataType": "JSON",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 130,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      }
+    },
+    "relationshipEntities": {
+      "rel_inv_result": {
+        "id": "rel_inv_result",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "table_investigation",
+          "columnIds": [
+            "inv_id"
+          ],
+          "x": 746,
+          "y": 200,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "table_result",
+          "columnIds": [
+            "result_inv_id"
+          ],
+          "x": 882,
+          "y": 309,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "rel_inv_exec": {
+        "id": "rel_inv_exec",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "table_investigation",
+          "columnIds": [
+            "inv_id"
+          ],
+          "x": 261.5,
+          "y": 300,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "table_execution",
+          "columnIds": [
+            "exec_inv_id"
+          ],
+          "x": 337,
+          "y": 560,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "rel_exec_finding": {
+        "id": "rel_exec_finding",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "table_execution",
+          "columnIds": [
+            "exec_id"
+          ],
+          "x": 678,
+          "y": 720,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "table_finding",
+          "columnIds": [
+            "finding_exec_id"
+          ],
+          "x": 847,
+          "y": 849,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      },
+      "rel_inv_ai": {
+        "id": "rel_inv_ai",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "table_investigation",
+          "columnIds": [
+            "inv_id"
+          ],
+          "x": 584.5,
+          "y": 300,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "table_aijob",
+          "columnIds": [
+            "ai_inv_id"
+          ],
+          "x": 452,
+          "y": 1200,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1762637002839,
+          "createAt": 1762637002839
+        }
+      }
+    },
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  }
+}

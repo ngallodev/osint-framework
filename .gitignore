@@ -1,0 +1,84 @@
+# Build outputs
+**/bin/
+**/obj/
+*.dll
+*.exe
+*.so
+*.dylib
+*.o
+
+# IDE
+.vscode/
+.vs/
+.idea/
+*.swp
+*.swo
+*~
+*.user
+*.suo
+*.sln.iml
+.DS_Store
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Local configuration files (secrets, credentials, local overrides)
+# These files are NOT checked into version control
+appsettings.local.json
+appsettings.local.Development.json
+appsettings.local.Production.json
+*.local.json
+*.local.yaml
+*.local.yml
+*.local.ini
+*.local.env
+.env
+.env.local
+frontend/.env
+docker-compose.local.yml
+docker-compose.local.yaml
+
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+updatedb.sh
+
+# TLS certificates
+certificates/*
+!certificates/.gitignore
+
+# Logs
+logs/
+*.log
+
+# Internal planning documents (keep tracked ones, ignore new local files)
+planning_docs/
+CURRENT_TODO.md
+PHASE_4_QUICK_START.md
+PHASE_4_SUMMARY.txt
+WORK_SUMMARY.md
+
+# Backup and temporary files
+*.original
+*.backup
+*.bak
+*.tmp
+
+# Internal development scripts and tools
+test-ai-queue.sh
+generate-structure.sh
+data.erd
+
+# Build outputs (frontend)
+frontend/dist/
+dist/
+
+# Claude Code configuration
+.claude/
