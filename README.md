@@ -1,7 +1,8 @@
 # OSINT Framework
 
 A comprehensive open-source intelligence gathering and analysis platform built with .NET 8, React 18 + TypeScript, Tailwind CSS, MariaDB, and pluggable tooling for SpiderFoot, Sherlock, theHarvester, and Ollama-backed AI insights.
-
+in progress...
+but currently set up to send questions or data to a local llm running on an ollama instance.
 ---
 
 ## ⚡ Quick Start
